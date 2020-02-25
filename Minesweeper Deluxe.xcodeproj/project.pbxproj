@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		CE1AF65324015F6B00B79F0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1AF65124015F6B00B79F0D /* Main.storyboard */; };
 		CE1AF65524015F7000B79F0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1AF65424015F7000B79F0D /* Assets.xcassets */; };
 		CE1AF65824015F7000B79F0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1AF65624015F7000B79F0D /* LaunchScreen.storyboard */; };
+		CEE85BF92405316B00A1BD74 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE85BF82405316B00A1BD74 /* Game.swift */; };
+		CEE85BFB240533C000A1BD74 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE85BFA240533C000A1BD74 /* Spot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		CE1AF65424015F7000B79F0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE1AF65724015F7000B79F0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE1AF65924015F7000B79F0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEE85BF82405316B00A1BD74 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CEE85BFA240533C000A1BD74 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +60,10 @@
 			children = (
 				CE1AF64D24015F6B00B79F0D /* AppDelegate.swift */,
 				CE1AF64F24015F6B00B79F0D /* ViewController.swift */,
-				CE1AF65124015F6B00B79F0D /* Main.storyboard */,
+				CEE85BF82405316B00A1BD74 /* Game.swift */,
+				CEE85BFA240533C000A1BD74 /* Spot.swift */,
 				CE1AF65424015F7000B79F0D /* Assets.xcassets */,
+				CE1AF65124015F6B00B79F0D /* Main.storyboard */,
 				CE1AF65624015F7000B79F0D /* LaunchScreen.storyboard */,
 				CE1AF65924015F7000B79F0D /* Info.plist */,
 			);
@@ -100,7 +106,7 @@
 				};
 			};
 			buildConfigurationList = CE1AF64524015F6B00B79F0D /* Build configuration list for PBXProject "Minesweeper Deluxe" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -136,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1AF65024015F6B00B79F0D /* ViewController.swift in Sources */,
+				CEE85BF92405316B00A1BD74 /* Game.swift in Sources */,
 				CE1AF64E24015F6B00B79F0D /* AppDelegate.swift in Sources */,
+				CEE85BFB240533C000A1BD74 /* Spot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,9 +289,12 @@
 		CE1AF65D24015F7000B79F0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8BQ894223A;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = "Minesweeper Deluxe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,6 +302,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Alex.Checkodanov.Minesweeper-Deluxe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -299,9 +311,12 @@
 		CE1AF65E24015F7000B79F0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8BQ894223A;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = "Minesweeper Deluxe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,6 +324,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Alex.Checkodanov.Minesweeper-Deluxe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
