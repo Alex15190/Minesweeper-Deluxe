@@ -9,15 +9,16 @@
 import Foundation
 
 class Spot {
-    var mined : Bool {
+    var isMined : Bool {
         return self.state == State.Mined ? true : false
     }
     var state : State
     var revealed : Bool = false
     var flagged : Bool = false
     
-    enum State {
+    enum State : String {
         case Empty
+        case Closed
         case Mined
         case One
         case Two
@@ -30,7 +31,7 @@ class Spot {
         
     }
     init() {
-        self.state = .Empty
+        self.state = .Closed
     }
     
     init(state: State) {
@@ -39,6 +40,7 @@ class Spot {
     
     func setState(by number:Int){
         switch number {
+            case -1: state = .Closed
             case 0: state = .Empty
             case 1: state = .One
             case 2: state = .Two
@@ -48,7 +50,7 @@ class Spot {
             case 6: state = .Six
             case 7: state = .Seven
             case 8: state = .Eight
-            default: state = .Empty
+            default: state = .Closed
         }
     }
 }
