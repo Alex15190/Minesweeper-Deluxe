@@ -7,20 +7,22 @@
 //
 
 struct GameConstants {
-    static var cellWidght = 60
+    static var cellSize = 60
 }
 
 import UIKit
 
-class GameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class GameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
  
-
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var horizontalNumOfCells = 10
-    var verticalNumOfCells = 10
-    var numOfMines = 5
+    @IBAction func restartGame(_ sender: Any) {
+        game.start()
+        collectionView.reloadData()
+    }
+    var horizontalNumOfCells = 5
+    var verticalNumOfCells = 6
+    var numOfMines = 4
     var limitedTime = false
     var time = 120.0
     
@@ -34,23 +36,26 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         self.game = Game(height: verticalNumOfCells, width: horizontalNumOfCells, numOfMines: numOfMines)
-        self.game.start()
         collectionView.delegate = self
         collectionView.dataSource = self
-        let cellSize = GameConstants.cellWidght
-        scrollView.contentSize = CGSize(width: horizontalNumOfCells*cellSize, height: verticalNumOfCells*cellSize)
-        
+        collectionView.isScrollEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.game.start()
         collectionView.reloadData()
     }
     
     func getCoordinatesFrom(indexPath : IndexPath) -> (width : Int,height : Int){
         
-        let h = (Int)((indexPath.item + 1) / horizontalNumOfCells)
-        let w = ((indexPath.item + 1) % horizontalNumOfCells) == 0 ? 4 : (((indexPath.item + 1) % horizontalNumOfCells) - 1)
+        let h = (Int)(indexPath.item / horizontalNumOfCells)
+        let w = ((indexPath.item + 1) % horizontalNumOfCells) == 0 ? (horizontalNumOfCells - 1) : (((indexPath.item + 1) % horizontalNumOfCells) - 1)
         return (w,h)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let a = GameConstants.cellSize
+        return CGSize(width: a, height: a)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,7 +68,13 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let coordinates = getCoordinatesFrom(indexPath: indexPath)
             let h = coordinates.height
             let w = coordinates.width
-            scell.imageView.image = UIImage(named: game.field[h][w].state.rawValue)
+            let field = game.field[w][h]
+            if (field.revealed){
+                scell.imageView.image = UIImage(named: field.state.rawValue)
+            }
+            else{
+                scell.imageView.image = UIImage(named: "Closed")
+            }
             return scell
         }
         return cell

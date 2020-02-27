@@ -18,7 +18,6 @@ class Spot {
     
     enum State : String {
         case Empty
-        case Closed
         case Mined
         case One
         case Two
@@ -31,7 +30,7 @@ class Spot {
         
     }
     init() {
-        self.state = .Closed
+        self.state = .Empty
     }
     
     init(state: State) {
@@ -40,7 +39,6 @@ class Spot {
     
     func setState(by number:Int){
         switch number {
-            case -1: state = .Closed
             case 0: state = .Empty
             case 1: state = .One
             case 2: state = .Two
@@ -50,7 +48,7 @@ class Spot {
             case 6: state = .Six
             case 7: state = .Seven
             case 8: state = .Eight
-            default: state = .Closed
+            default: state = .Empty
         }
     }
 }

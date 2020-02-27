@@ -44,6 +44,7 @@ class Game{
             firstTouch = false
         }
         else if (field[x][y].isMined){
+            field[x][y].revealed = true
             gameOver = true
         }
         else{
@@ -51,11 +52,11 @@ class Game{
         }
     }
     
-    func outOfBounds(x: Int, y: Int) -> Bool{
+    private func outOfBounds(x: Int, y: Int) -> Bool{
         return x<0 || y<0 || x>=gridW || y>=gridH
     }
     
-    func calcNearMines(x: Int, y: Int) -> Int {
+    private func calcNearMines(x: Int, y: Int) -> Int {
         if(outOfBounds(x: x, y: y)){ return 0}
         var counter = 0
         for offsetX in -1...1{
@@ -70,7 +71,7 @@ class Game{
         return counter
     }
     
-    func reveal(x: Int, y: Int){
+    private func reveal(x: Int, y: Int){
         if(outOfBounds(x: x, y: y) || field[x][y].revealed || field[x][y].flagged){return}
         field[x][y].revealed = true
         if(calcNearMines(x: x, y: y) != 0){return}
@@ -86,7 +87,7 @@ class Game{
         field[x][y].flagged = !field[x][y].flagged
     }
     
-    func placeMinesExept(fx: Int, fy: Int){
+    private func placeMinesExept(fx: Int, fy: Int){
         var counter = 0
         while (counter < numOfMines) {
             let x = Int.random(in: 0..<gridW)
@@ -97,10 +98,10 @@ class Game{
         }
     }
     
-    func clearFields(){
+    private func clearFields(){
         for x in 0..<gridW {
             for y in 0..<gridH {
-                field[x][y].state = .Empty // Closed
+                field[x][y] = Spot()
             }
         }
     }
